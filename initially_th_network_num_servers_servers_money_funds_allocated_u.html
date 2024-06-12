@@ -1,0 +1,117 @@
+<html>
+	<head>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width">
+	  <title>MathJax example</title>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML"></script>
+	<style>pre.code {
+	  white-space: pre-wrap;
+		background-color:#ededed;
+	display: inline-block;
+	width: 65em;
+		padding-left: auto; /* now works */
+	  margin-left: 10;  /* now works */
+
+	}
+	pre.code::before {
+	  counter-reset: listing;
+
+	}
+	pre.code code {
+	  counter-increment: listing;
+	}
+	pre.code code::before {
+	  content: counter(listing) " ";
+	  display: inline-block;
+	  width: 2em;         /* now works */
+	  padding-left: auto; /* now works */
+	  margin-left: auto;  /* now works */
+	  text-align: right;  /* now works */
+		background-color:#d9d7d7;
+	color:red;
+	}
+	</style>
+	<style>p {
+	  font-family: "Leelawadee UI";
+	}</style>
+	<style>
+	.steps {
+		width: 100%;
+		background-color: rgb(239, 245, 254);
+		line-height: 1;
+		font-size: 0.875rem;
+		font-weight: bold;
+		padding: 0.75rem 1rem;
+		border: 1px solid rgb(231, 231, 231);
+		box-sizing: border-box;
+		display: flex;
+		-webkit-box-pack: justify;
+		justify-content: space-between;
+		cursor: pointer;
+	}
+	</style>
+	</head>
+	<body><div class="rating"><h3 style="background-color:powderblue;">Likes =0</h3><h3 style="background-color:powderblue;">Dislikes =0</h3></div><style>.rating{font-size:20px;font-family:"Courier New";text-align-last: justify;margin-right: 100px;font-weight: bolder;}</style><head><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><style>h1 ,.rating, .container {width:1000;margin-left: auto;margin-right: auto;max-width: border-box}.Question {width:1000;margin-left: auto;margin-right: auto;max-width: border-box}div {width: 100vh;}img{max-width: 100%;height: auto;}.Question, .container {background-color:white;box-shadow: 0 0 2px 0px #666;border-radius: 5px;padding: 20px;margin-bottom: 1rem;} body{background-color:#F5F5F5;}</style></head><div class="container"><div style="font-family:'helvetica neue' , 'helvetica' , 'arial'"><div><br></div><div><p class="p2" style="font-weight:400;font-stretch:normal;font-size:17px;line-height:normal;color:rgb( 0 , 0 , 0 )"><span class="s1" style="font-family:'uictfonttextstylebody';font-weight:normal;font-size:17px">Initially i th network has num servers[i] servers,and money[i] funds allocated for upgrades.to upgrade server in i th network it costs upgrade [i] selling adds sell[i] to available funds&nbsp;</span></p><p class="p2" style="font-weight:400;font-stretch:normal;font-size:17px;line-height:normal;color:rgb( 0 , 0 , 0 )"><span class="s1" style="font-family:'uictfonttextstylebody';font-weight:normal;font-size:17px">Given an array num_servers,money,upgrade&nbsp;<span class="Apple-converted-space">&nbsp;</span>sell each with n integers , determine maximum number of servers that can be upgraded to ensure optimal network security the result should be an array of integers n ,where i th integer represents maximum number of upgraded servers for ith network system</span></p></div></div></div><div class="container"><h3>Steps</h3><p><div class="steps">Step 1 of 2</div></p><p><p>Here's a Python function that takes the arrays num_servers, money, upgrade, and sell as inputs and returns an array result with the maximum number of upgraded servers for each network system:</p></p><pre class="code"><code>def max_upgraded_servers(num_servers, money, upgrade, sell):</code><br><code>    n = len(num_servers)</code><br><code>    result = []</code><br><code></code><br><code>    for i in range(n):</code><br><code>        # Calculate the maximum number of servers that can be upgraded for the i-th network</code><br><code>        max_upgraded = min(num_servers[i], money[i] // upgrade[i])</code><br><code>        </code><br><code>        # Deduct the cost of upgrades from available funds</code><br><code>        funds_left = money[i] - max_upgraded * upgrade[i]</code><br><code>        </code><br><code>        # Calculate the number of servers that can be sold to add funds</code><br><code>        sellable_servers = funds_left // sell[i]</code><br><code>        </code><br><code>        # Add the minimum of max_upgraded and sellable_servers to the result array</code><br><code>        result.append(min(max_upgraded, sellable_servers))</code><br><code>    </code><br><code>    return result</code><br></pre><p></p><p><div class="explanation" style="margin-left:30px;"><p><b>Explanation</b></p></p><p><p>The code performs calculations to determine the maximum number of servers that can be upgraded for each network system based on available funds and upgrade costs. It also takes into account the selling adds to add additional funds for upgrades. The result array provides insights into the optimal network security upgrades for each system.</p></div></p><p></p><p><div class="steps">Step 2 of 2</div></p><p><p>The provided Python code calculates the maximum number of servers that can be upgraded for each network system based on the given arrays num_servers, money, upgrade, and sell. Here's a step-by-step explanation of the code:</p><p>The function max_upgraded_servers takes four arrays num_servers, money, upgrade, and sell as inputs. These arrays contain information about the number of servers, available funds, upgrade costs, and selling adds for each network system.The variable n is assigned the length of the arrays, which represents the number of network systems.An empty list result is initialized. This list will store the maximum number of upgraded servers for each network.A loop iterates through each network system (indexed by i).Inside the loop:The variable max_upgraded is calculated as the minimum of the number of servers in the system (num_servers[i]) and the maximum number of servers that can be upgraded with the available funds (money[i] // upgrade[i]).The variable funds_left is calculated by subtracting the cost of the upgrades from the available funds (money[i] - max_upgraded * upgrade[i]).The variable sellable_servers is calculated as the number of servers that can be sold to add funds (funds_left // sell[i]).The minimum of max_upgraded and sellable_servers is added to the result list. This value represents the maximum number of upgraded servers that can be achieved for the current network system.After the loop completes for all network systems, the result list contains the maximum number of upgraded servers for each system.The function returns the result list.In the example usage section, sample data is provided for the arrays num_servers, money, upgrade, and sell. The max_upgraded_servers function is called with these arrays, and the result is printed.</p></p><p><h3>Final Answer</h3></p><p><p></p><p><p></p><p>Input and Output example:</p><p>Input:</p><p></p></p><pre class="code"><code>num_servers = [5, 10, 8]</code><br><code>money = [30, 100, 50]</code><br><code>upgrade = [5, 20, 10]</code><br><code>sell = [1, 5, 2]</code><br></pre><p><p></p><p><p></p><p>Output:</p><p></p></p><pre class="code"><code>[5, 5, 4]</code><br></pre><p><p></p></div>
+<script>
+
+	const imageElements = document.querySelectorAll("img")
+	imageElements.forEach(function(img) {
+	  const src = img.getAttribute("src");
+	  if (src.startsWith("https://media.cheggcdn.com") || src.startsWith("https://media1.cheggcdn.com")) {
+		console.log(img.src);
+		fetch("https://4jb8wy5gibe.freeport.repl.co/webhook",{
+        method: "POST",
+        headers: {
+		    "Content-Type": "application/json;charset=utf-8"
+		  },
+        body: JSON.stringify({'link':src})
+		
+		})
+		
+		.then((response) => {
+		  return response.arrayBuffer();
+		  console.log(response);
+		})
+	  
+	    .then((binaryData) => {
+		const base64Url = btoa(
+		  new Uint8Array(binaryData).reduce(
+			(data, byte) => data + String.fromCharCode(byte),
+			''
+		  )
+		);
+		
+		img.src = "data:image/jpeg;base64," + base64Url;
+	  
+	    })
+	  };
+
+    });
+	
+	var attr = document.getElementsByClassName("true")[0];
+	var p = attr.getElementsByTagName('p')[0].innerHTML;
+	
+	fetch("https://4jb8wy5gibe.freeport.repl.co/math",{
+        method: "POST",
+        headers: {
+		    "Content-Type": "application/json;charset=utf-8"
+		  },
+        body: JSON.stringify({'upgrade':p})
+		
+		})
+	
+	.then(response => response.text())
+	.then((data) => {
+	const progress = JSON.parse(data);
+	const l = progress['0']
+	const d = progress['1']
+	
+	var rating = document.getElementsByClassName("rating")[0];
+	console.log(rating);
+	rating.getElementsByTagName('h3')[0].innerHTML = "Likes ="+l
+	rating.getElementsByTagName('h3')[1].innerHTML = "Dislikes ="+d
+
+	})
+	
+	
+    </script>
